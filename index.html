@@ -1,1 +1,30 @@
-# line-redirect
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>開啟中…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: sans-serif; text-align:center; padding-top:40px;">
+  <p>正在為您開啟瀏覽器，請稍候…</p>
+
+  <script>
+    const target = new URLSearchParams(location.search).get('url');
+    const ua = navigator.userAgent.toLowerCase();
+    const isLine = ua.includes('line');
+
+    if (target) {
+      if (isLine) {
+        location.href = target;
+        setTimeout(() => {
+          window.open(target, '_blank');
+        }, 300);
+      } else {
+        location.href = target;
+      }
+    } else {
+      document.body.innerHTML = '缺少跳轉網址';
+    }
+  </script>
+</body>
+</html>
